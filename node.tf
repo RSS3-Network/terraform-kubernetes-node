@@ -18,6 +18,23 @@ locals {
     }
     endpoints = var.node_rpc_endpoints
     workers   = var.node_workers
+
+    broadcaster = {
+      enabled = var.node_register
+    }
+    configs = {
+      discovery = {
+        maintainer = {
+          evm_address = var.node_register_evm_address
+          signature   = var.node_register_evm_signature
+        }
+        server = {
+          endpoint                = var.node_http_endpoint
+          global_indexer_endpoint = var.node_register_gi_address
+
+        }
+      }
+    }
   }
 }
 

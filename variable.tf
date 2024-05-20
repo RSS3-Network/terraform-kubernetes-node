@@ -142,3 +142,43 @@ variable "node_values" {
   default     = []
   description = "The extra values for the node"
 }
+
+variable "node_register" {
+  type        = bool
+  default     = true
+  description = "Register the node with the network"
+}
+
+variable "node_register_evm_address" {
+  type        = string
+  default     = ""
+  description = "The evm address to register the node with"
+  validation {
+    // only when node_register is true
+    condition     = var.node_register && var.node_register_evm_address != ""
+    error_message = "node_register_evm_address is required when node_register is true"
+  }
+}
+
+variable "node_register_evm_signature" {
+  type        = string
+  sensitive   = true
+  default     = ""
+  description = "The evm signature to register the node with"
+  validation {
+    // only when node_register is true
+    condition     = var.node_register && var.node_register_evm_signature != ""
+    error_message = "node_register_evm_signature is required when node_register is true"
+  }
+}
+
+variable "node_register_gi_address" {
+  type        = string
+  default     = "https://gi.rss3.io/"
+  description = "The gi address to register the node with"
+}
+
+variable "node_http_endpoint" {
+  type        = string
+  description = "The http endpoint for the node"
+}
