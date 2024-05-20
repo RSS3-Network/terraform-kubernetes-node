@@ -5,7 +5,7 @@ Use `node_rpc_endpoints` to specify the rpc endpoint and its http headers.
 
 ```terraform
 module "node" {
-  source = "RSS3-Network/modules/node"
+  source = "RSS3-Network/node/kubernetes"
 
   node_rpc_endpoints = {
     ethereum = {

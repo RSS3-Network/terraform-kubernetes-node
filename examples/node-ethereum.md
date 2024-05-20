@@ -20,7 +20,7 @@ There are serval of workers for ethereum
 
 ```terraform
 module "node" {
-  source = "RSS3-Network/modules/node"
+  source = "RSS3-Network/node/kubernetes"
 
   node_rpc_endpoints = {
     ethereum = {
