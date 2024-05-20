@@ -47,6 +47,8 @@ Then perform the following steps:
 3. Run `terraform apply` to apply the execution plan.
 4. Run `terraform destroy` to destroy the resources created by the execution plan.
 
+More examples can be found in the [examples](./examples) directory.
+
 ## Inputs
 
 | Name                | Description                                             | Type                                           | Default                                                                           | Required |
