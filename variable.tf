@@ -1,27 +1,26 @@
 variable "namespace" {
-  type    = string
-  default = "default"
-}
-
-variable "crdb_operator_namespace" {
-  type    = string
-  default = "cockroach-operator"
+  type        = string
+  default     = "default"
+  description = "The namespace to deploy the application and cockroachdb"
 }
 
 variable "crdb_storage_class" {
-  type    = string
-  default = ""
+  type        = string
+  default     = ""
+  description = "kubernetes storage class for cockroachdb"
 }
 
 variable "crdb_disk_size" {
-  type    = string
-  default = "100Gi"
+  type        = string
+  default     = "100Gi"
+  description = "The size of the disk for the cockroachdb"
 }
 
 // need to bigger than 3
 variable "crdb_replicas" {
-  type    = number
-  default = 3
+  type        = number
+  default     = 3
+  description = "The number of cockroachdb replicas"
   validation {
     condition     = var.crdb_replicas >= 3
     error_message = "Replicas must be greater than 3"
@@ -43,6 +42,7 @@ variable "crdb_resources" {
       memory = "8Gi"
     }
   }
+  description = "The resources for the cockroachdb"
 }
 
 variable "crdb_extra_settings" {
@@ -50,22 +50,26 @@ variable "crdb_extra_settings" {
     name  = string
     value = string
   }))
-  default = []
+  default     = []
+  description = "The extra helm set flags"
 }
 
 variable "crdb_values" {
-  type    = list(string)
-  default = []
+  type        = list(string)
+  default     = []
+  description = "The extra values for the cockroachdb"
 }
 
 variable "crdb_user" {
-  type    = string
-  default = "roach"
+  type        = string
+  default     = "roach"
+  description = "The user for the cockroachdb"
 }
 
 variable "crdb_password" {
-  type    = string
-  default = ""
+  type        = string
+  default     = ""
+  description = "Leave empty to create a random password"
   // strong password
   validation {
     // only not empty 
@@ -75,8 +79,9 @@ variable "crdb_password" {
 }
 
 variable "crdb_database" {
-  type    = string
-  default = "node"
+  type        = string
+  default     = "node"
+  description = "The database for the cockroachdb"
 }
 
 variable "redis_enable" {
@@ -100,8 +105,9 @@ variable "redis_password" {
 }
 
 variable "node_replicas" {
-  type    = number
-  default = 3
+  type        = number
+  default     = 3
+  description = "node http server replicas"
 }
 
 variable "node_rpc_endpoints" {
@@ -110,7 +116,8 @@ variable "node_rpc_endpoints" {
     http_headers   = map(string)
     http2_disabled = bool
   }))
-  default = {}
+  default     = {}
+  description = "rpc endpoints with http headers and http2 options"
 }
 
 variable "node_workers" {
@@ -127,10 +134,11 @@ variable "node_workers" {
       memory = string
     })), {})
   }))
+  description = "The workers for the node"
 }
 
 variable "node_values" {
-  type    = list(string)
-  default = []
-
+  type        = list(string)
+  default     = []
+  description = "The extra values for the node"
 }
