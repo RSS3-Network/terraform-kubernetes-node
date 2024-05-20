@@ -16,9 +16,9 @@ This module is meant for use with Terraform 0.14.
 module "node" {
   source = "RSS3-Network/node/kubernetes"
 
-  crdb_disk_size       = "500Gi"
-  crdb_storage_class"  = "premium-rwo"
-  crdb_resources       = {
+  crdb_disk_size     = "500Gi"
+  crdb_storage_class = "premium-rwo"
+  crdb_resources = {
     requests = {
       cpu    = "8"
       memory = "32Gi"
