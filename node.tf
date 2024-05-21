@@ -44,7 +44,7 @@ resource "helm_release" "node" {
   namespace  = var.namespace
   repository = "https://rss3-network.github.io/helm-charts"
   chart      = "node"
-  version    = "0.3.14"
+  version    = "0.3.15"
 
   values = concat([
     yamlencode(local.node_values)
