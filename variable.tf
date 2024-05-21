@@ -167,7 +167,7 @@ variable "node_register_evm_signature" {
   description = "The evm signature to register the node with"
   validation {
     // only when node_register is true
-    condition     = var.node_register && var.node_register_evm_signature != ""
+    condition     = var.node_register_evm_signature != ""
     error_message = "node_register_evm_signature is required when node_register is true"
   }
 }
