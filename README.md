@@ -1,4 +1,4 @@
-# Terraform Node Ethereum Submodule
+# Terraform Node Module
 
 This module helpers you create RSS3 DSL Node with cockroachdb, redis, and other services easily.  
 The resources/services/activations/deletions that this module will create/trigger are:
@@ -29,6 +29,14 @@ module "node" {
     }
   }
 
+  node_workers = [
+    {
+      id       = "crossbell",
+      worker   = "crossbell",
+      network  = "crossbell",
+      endpoint = "https://rpc.crossbell.io"
+    }
+  ]
 }
 ```
 
@@ -43,26 +51,32 @@ More examples can be found in the [examples](./examples) directory.
 
 ## Inputs
 
-| Name                      | Description                                             | Type                                                              | Default                                                                           | Required |
-| ------------------------- | ------------------------------------------------------- | ----------------------------------------------------------------- | --------------------------------------------------------------------------------- | :------: |
-| namespace                 | The namespace to deploy the application and cockroachdb | string                                                            | default                                                                           |    no    |
-| crdb_storage_class        | kubernetes storage class for cockroachdb                | string                                                            | ""                                                                                |    no    |
-| crdb_disk_size            | The size of the disk for the cockroachdb                | string                                                            | 100Gi                                                                             |    no    |
-| crdb_replicas             | The number of cockroachdb replicas                      | number                                                            | 3                                                                                 |    no    |
-| crdb_resources            | The resources for the cockroachdb                       | map(object({ cpu = string memory = string }))                     | { requests = { cpu = "2" memory = "8Gi" } limits = { cpu = "2" memory = "8Gi" } } |    no    |
-| crdb_extra_settings       | The extra helm set flags                                | list(object({ name = string value = string }))                    | []                                                                                |    no    |
-| crdb_values               | The extra values for the cockroachdb                    | list(string)                                                      | []                                                                                |    no    |
-| crdb_user                 | The user for the cockroachdb                            | string                                                            | roach                                                                             |    no    |
-| crdb_password             | Leave empty to create a random password                 | string                                                            | ""                                                                                |    no    |
-| crdb_database             | The database for the cockroachdb                        | string                                                            | node                                                                              |    no    |
-| redis_enable              |                                                         | bool                                                              | false                                                                             |    no    |
-| redis_endpoint            |                                                         | string                                                            |
-| redis_username            |                                                         | string                                                            | ""                                                                                |    no    |
-| redis_password            |                                                         | string                                                            | ""                                                                                |    no    |
-| node_replicas             | node http server replicas                               | number                                                            | 3                                                                                 |    no    |
-| node_rpc_endpoints        | rpc endpoints with http headers and http2 options       | { url = string http_headers = map(string) http2_disabled = bool } | {}                                                                                |    no    |
-| node_values               | The extra values for the node                           | list(string)                                                      | []                                                                                |    no    |
-| node_register             | Register the node with the network                      | bool                                                              | true                                                                              |    no    |
-| node_register_evm_address | The evm address to register the node with               | string                                                            | ""                                                                                |    no    |
-| node_register_gi_address  | The gi address to register the node with                | string                                                            | "https://gi.rss3.io/"                                                             |    no    |
-| node_http_endpoint        | The http endpoint for the node                          | string                                                            | ""                                                                                |    no    |
+| Name                      | Description                                             | Type                                           | Default                                                                           | Required |
+| ------------------------- | ------------------------------------------------------- | ---------------------------------------------- | --------------------------------------------------------------------------------- | :------: |
+| namespace                 | The namespace to deploy the application and cockroachdb | string                                         | default                                                                           |    no    |
+| crdb_storage_class        | kubernetes storage class for cockroachdb                | string                                         | ""                                                                                |    no    |
+| crdb_disk_size            | The size of the disk for the cockroachdb                | string                                         | 100Gi                                                                             |    no    |
+| crdb_replicas             | The number of cockroachdb replicas                      | number                                         | 3                                                                                 |    no    |
+| crdb_resources            | The resources for the cockroachdb                       | map(object({ cpu = string memory = string }))  | { requests = { cpu = "2" memory = "8Gi" } limits = { cpu = "2" memory = "8Gi" } } |    no    |
+| crdb_extra_settings       | The extra helm set flags                                | list(object({ name = string value = string })) | []                                                                                |    no    |
+| crdb_values               | The extra values for the cockroachdb                    | list(string)                                   | []                                                                                |    no    |
+| crdb_user                 | The user for the cockroachdb                            | string                                         | roach                                                                             |    no    |
+| crdb_password             | Leave empty to create a random password                 | string                                         | ""                                                                                |    no    |
+| crdb_database             | The database for the cockroachdb                        | string                                         | node                                                                              |    no    |
+| redis_enable              |                                                         | bool                                           | false                                                                             |    no    |
+| redis_endpoint            |                                                         | string                                         |
+| redis_username            |                                                         | string                                         | ""                                                                                |    no    |
+| redis_password            |                                                         | string                                         | ""                                                                                |    no    |
+| node_replicas             | node http server replicas                               | number                                         | 3                                                                                 |    no    |
+| node_rpc_endpoints        | rpc endpoints with http headers and http2 options       | map(**endpoint**)                              | {}                                                                                |    no    |
+| node_workers              | The workers for the node                                | list(**worker**) }))                           |                                                                                   |   yes    |
+| node_values               | The extra values for the node                           | list(string)                                   | []                                                                                |    no    |
+| node_register             | Register the node with the network                      | bool                                           | true                                                                              |    no    |
+| node_register_evm_address | The evm address to register the node with               | string                                         | ""                                                                                |    no    |
+| node_register_gi_address  | The gi address to register the node with                | string                                         | "https://gi.rss3.io/"                                                             |    no    |
+| node_http_endpoint        | The http endpoint for the node                          | string                                         | ""                                                                                |    no    |
+
+### complicated object structure
+
+- **endpoint**: object({ url = string http_headers = map(string) http2_disabled = bool })
+- **worker**: object({ id = string network = string worker = string endpoint = string parameters = optional(map(string), {}) resources = optional(map(object({ cpu = string memory = string }))
