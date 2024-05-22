@@ -116,7 +116,6 @@ variable "node_ethereum_endpoint" {
     http_headers   = map(string)
     http2_disabled = bool
   })
-  default     = {}
   description = "The ethereum endpoint for the node"
 }
 

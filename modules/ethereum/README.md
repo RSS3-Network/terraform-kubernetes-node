@@ -28,6 +28,14 @@ module "node" {
       memory = "32Gi"
     }
   }
+
+  node_ethereum_endpoint = {
+    url = "https://your-ethereum-rpc"
+    http_headers = {
+      "key" = "value"
+    }
+  }
+
   node_register_config = {
     maintainer = {
       evm_address = "0x1234567890abcdef1234567890abcdef12345678"
