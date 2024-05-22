@@ -14,7 +14,7 @@ This module is meant for use with Terraform 0.14.
 
 ```terraform
 module "node" {
-  source = "RSS3-Network/node/kubernetes"
+  source = "RSS3-Network/node/kubernetes//modules/ethereum"
 
   crdb_disk_size     = "500Gi"
   crdb_storage_class = "premium-rwo"
