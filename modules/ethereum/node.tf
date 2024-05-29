@@ -160,7 +160,7 @@ locals {
     endpoints = {
       ethereum = var.node_ethereum_endpoint
     }
-    workers   = concat(local.ethereum_worker, local.internal_worker)
+    workers = concat(local.ethereum_worker, local.internal_worker)
 
     broadcaster = {
       enabled = var.node_register
@@ -177,7 +177,7 @@ resource "helm_release" "node" {
   namespace  = var.namespace
   repository = "https://rss3-network.github.io/helm-charts"
   chart      = "node"
-  version    = "0.4.0"
+  version    = "0.4.2"
 
   values = concat([
     yamlencode(local.node_values)
