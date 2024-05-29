@@ -102,23 +102,23 @@ locals {
     }
   ]
   internal_worker = [
-    {
-      id       = "arweave-mirror"
-      network  = "arweave"
-      worker   = "mirror"
-      endpoint = "https://arweave.net"
+    # {
+    #   id       = "arweave-mirror"
+    #   network  = "arweave"
+    #   worker   = "mirror"
+    #   endpoint = "https://arweave.net"
 
-      resources = {
-        requests = {
-          cpu    = "500m"
-          memory = "512Mi"
-        }
-        limits = {
-          cpu    = "1"
-          memory = "1Gi"
-        }
-      }
-    },
+    #   resources = {
+    #     requests = {
+    #       cpu    = "500m"
+    #       memory = "512Mi"
+    #     }
+    #     limits = {
+    #       cpu    = "1"
+    #       memory = "1Gi"
+    #     }
+    #   }
+    # },
     {
       id       = "crossbell",
       worker   = "crossbell",
