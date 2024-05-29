@@ -120,12 +120,6 @@ locals {
       }
     },
     {
-      id       = "arweave-paragraph"
-      network  = "arweave"
-      worker   = "paragraph"
-      endpoint = "https://arweave.net"
-    },
-    {
       id       = "crossbell",
       worker   = "crossbell",
       network  = "crossbell",
