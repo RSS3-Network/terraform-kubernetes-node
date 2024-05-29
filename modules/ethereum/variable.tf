@@ -133,7 +133,7 @@ variable "node_register" {
 
 variable "node_register_config" {
   type = object({
-    maintainer = object({
+    operator = object({
       evm_address = string
       signature   = string
     })
