@@ -9,6 +9,7 @@ module "memorystore" {
   memory_size_gb = "1"
   enable_apis    = "true"
   auth_enabled   = true
+  region = var.region
 
   authorized_network = module.gcp-network.network_name
 }

@@ -61,3 +61,5 @@ credentials.json
 # ignore generated ASM yamls in /workspace/test/fixtures/simple_zonal_with_asm
 # as it is a test in a production scenario these files are expected to be checked in
 /test/fixtures/simple_zonal_with_asm/asm-dir
+
+*.tfvars
