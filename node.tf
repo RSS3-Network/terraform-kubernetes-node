@@ -29,9 +29,6 @@ locals {
 }
 
 resource "helm_release" "node" {
-  depends_on = [
-    module.alloy-db
-  ]
   name       = "node"
   namespace  = var.namespace
   repository = "https://rss3-network.github.io/helm-charts"
