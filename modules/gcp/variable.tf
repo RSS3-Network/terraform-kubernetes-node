@@ -18,7 +18,7 @@ variable "regional" {
 variable "region" {
   type        = string
   description = "The region to host the cluster in (optional if zonal cluster / required if regional)"
-  default     = null
+  default     = "us-central1"
 }
 
 variable "zones" {
