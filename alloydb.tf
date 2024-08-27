@@ -5,8 +5,8 @@ module "alloy-db" {
   cluster_id       = "alloydb-cluster-rss3"
   cluster_location = "us-central1"
   cluster_initial_user = {
-    user     = var.alloydb_user,
-    password = var.alloydb_user
+    user     = "rss3",
+    password = random_password.alloy_password.result
   }
   network_self_link = "projects/${var.google_project_id}/global/networks/${var.google_vpc_network_name}"
   primary_instance = {
@@ -19,5 +19,5 @@ module "alloy-db" {
 }
 
 locals {
-  database_uri = "postgresql://${var.alloydb_user}:${var.alloydb_password}@${module.alloy-db.primary_psc_dns_name}:5432/postgres"
+  database_uri = "postgresql://rss3:${random_password.alloy_password.result}@${module.alloy-db.primary_psc_dns_name}:5432/postgres"
 }

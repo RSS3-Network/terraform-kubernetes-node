@@ -3,18 +3,6 @@ variable "namespace" {
   default     = "default"
   description = "The namespace to deploy the application"
 }
-
-variable "alloydb_user" {
-  type        = string
-  description = "The username for AlloyDB connection"
-}
-
-variable "alloydb_password" {
-  type        = string
-  description = "The password for AlloyDB connection"
-  sensitive   = true
-}
-
 variable "google_project_id" {
   type        = string
   description = "The Google Cloud project ID"

@@ -1,5 +1,5 @@
 // compatible with shells consider using only uppercase and lowercase letters
-resource "random_password" "crdb_password" {
+resource "random_password" "alloy_password" {
   length      = 16
   special     = false
   min_lower   = 4
