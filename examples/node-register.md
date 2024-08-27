@@ -4,7 +4,7 @@ This is a node config register to VSL Chain.
 
 variable "node_register_config" {
 type = object({
-maintainer = object({
+operator = object({
 evm_address = string
 signature = string
 })
@@ -21,7 +21,7 @@ module "node" {
   source = "RSS3-Network/node/kubernetes"
 
   node_register_config = {
-    maintainer = {
+    operator = {
       evm_address = "0x1234567890abcdef1234567890abcdef12345678"
         signature = "0x1234567890abcdef1234567890abcdef1234567890abcdef1234567890abcdef"
     }

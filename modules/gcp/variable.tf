@@ -92,6 +92,7 @@ variable "node_register_config" {
     server = object({
       endpoint                = string
       global_indexer_endpoint = optional(string, "https://gi.rss3.io/")
+      access_token            = string
     })
   })
   description = "The register config for the node"
