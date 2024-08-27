@@ -1,6 +1,11 @@
 module "alloy-db" {
   source           = "GoogleCloudPlatform/alloy-db/google"
   version          = "~> 3.0"
+
+depends_on = [ 
+  module.gcp-network
+ ]
+
   project_id       = var.project_id
   cluster_id       = "alloydb-dsl"
   cluster_location = var.region
@@ -30,5 +35,5 @@ resource "random_password" "alloy_password" {
 
 locals {
   database_user = "node"
-  database_uri  = "postgresql://${local.database_user}:${random_password.alloy_password.result}@${module.alloy-db.primary_psc_dns_name}:5432/postgres"
+  database_uri  = "postgresql://${local.database_user}:${random_password.alloy_password.result}@${module.alloy-db.primary_instance.ip_address}:5432/postgres"
 }

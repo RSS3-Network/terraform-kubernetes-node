@@ -1,6 +1,6 @@
 locals {
-  network_name = "dsl-gke-network"
-  subnet_name  = "dsl-gke-subnet"
+  network_name = "dsl-gke-network-demo"
+  subnet_name  = "dsl-gke-subnet-demo"
 
   ip-range-pods-name     = "ip-range-pods"
   ip-range-services-name = "ip-range-services"
@@ -39,7 +39,7 @@ resource "google_compute_global_address" "alloydb_private_ip_alloc" {
   name          = "alloydb-private-ip-alloc"
   purpose       = "VPC_PEERING"
   address_type  = "INTERNAL"
-  prefix_length = 24
+  prefix_length = 16
   network       = module.gcp-network.network_id
   project       = var.project_id
 }

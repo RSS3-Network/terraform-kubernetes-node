@@ -20,4 +20,5 @@ module "gke" {
   create_service_account     = true
 
   dns_cache = false
+  depends_on = [ module.gcp-network ]
 }
