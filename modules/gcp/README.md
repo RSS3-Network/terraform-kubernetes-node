@@ -38,6 +38,7 @@ module "node" {
       endpoint = "https://your-node.custom-domain.com"
       # optional, default to "https://gi.rss3.io/", testnet use "https://gi.rss3.dev/"
       global_indexer_endpoint = "https://gi.rss3.io/"
+      access_token = "<generate_random_access_token>"
     }
   }
 }
