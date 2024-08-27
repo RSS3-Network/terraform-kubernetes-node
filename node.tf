@@ -29,7 +29,9 @@ locals {
 }
 
 resource "helm_release" "node" {
-  depends_on = [helm_release.cockroachdb]
+  depends_on = [
+    google_alloydb_cluster.rss3
+  ]
   name       = "node"
   namespace  = var.namespace
   repository = "https://rss3-network.github.io/helm-charts"
