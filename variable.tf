@@ -4,6 +4,28 @@ variable "namespace" {
   description = "The namespace to deploy the application"
 }
 
+variable "alloydb_user" {
+  type        = string
+  description = "The username for AlloyDB connection"
+}
+
+variable "alloydb_password" {
+  type        = string
+  description = "The password for AlloyDB connection"
+  sensitive   = true
+}
+
+variable "google_project_id" {
+  type        = string
+  description = "The Google Cloud project ID"
+}
+
+variable "google_vpc_network_name" {
+  type        = string
+  default     = "default"
+  description = "The name of VPC for AlloyDB"
+}
+
 variable "redis_enable" {
   type    = bool
   default = false

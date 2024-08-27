@@ -30,7 +30,7 @@ locals {
 
 resource "helm_release" "node" {
   depends_on = [
-    google_alloydb_cluster.rss3
+    module.alloy-db
   ]
   name       = "node"
   namespace  = var.namespace
