@@ -34,3 +34,18 @@ module "gcp-network" {
     ]
   }
 }
+
+resource "google_compute_global_address" "alloydb_private_ip_alloc" {
+  name          = "alloydb-private-ip-alloc"
+  purpose       = "VPC_PEERING"
+  address_type  = "INTERNAL"
+  prefix_length = 24
+  network       = module.gcp-network.network_id
+  project       = var.project_id
+}
+
+resource "google_service_networking_connection" "alloydb" {
+  network                 = module.gcp-network.network_id
+  service                 = "servicenetworking.googleapis.com"
+  reserved_peering_ranges = [google_compute_global_address.alloydb_private_ip_alloc.name]
+}

@@ -8,7 +8,7 @@ module "alloy-db" {
     user     = local.database_user,
     password = random_password.alloy_password.result
   }
-  psc_enabled = true
+  network_self_link = google_service_networking_connection.alloydb.network
 
   primary_instance = {
     instance_id       = "primary-instance",
