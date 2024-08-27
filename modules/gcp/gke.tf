@@ -11,7 +11,7 @@ module "gke" {
   regional   = var.regional
 
   network           = module.gcp-network.network_name
-  subnetwork        = module.gcp-network.subnet_name
+  subnetwork        = local.subnet_name
   ip_range_pods     = local.ip-range-pods-name
   ip_range_services = local.ip-range-services-name
 
