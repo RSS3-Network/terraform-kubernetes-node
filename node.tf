@@ -4,7 +4,7 @@ locals {
       replicaCount = var.node_replicas
     }
     database = {
-      uri = local.database_uri
+      uri = var.database_uri
     }
     redis = {
       enable        = var.redis_enable

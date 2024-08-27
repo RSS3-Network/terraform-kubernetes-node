@@ -3,16 +3,6 @@ variable "namespace" {
   default     = "default"
   description = "The namespace to deploy the application"
 }
-variable "google_project_id" {
-  type        = string
-  description = "The Google Cloud project ID"
-}
-
-variable "google_vpc_network_name" {
-  type        = string
-  default     = "default"
-  description = "The name of VPC for AlloyDB"
-}
 
 variable "redis_enable" {
   type    = bool
@@ -91,4 +81,9 @@ variable "node_register_config" {
     })
   })
   description = "The register config for the node"
+}
+
+variable "database_uri" {
+  type        = string
+  description = "The database uri"
 }
