@@ -56,6 +56,16 @@ variable "redis_enable" {
   default = true
 }
 
+variable "node_rpc_endpoints" {
+  type = map(object({
+    url            = string
+    http_headers   = map(string)
+    http2_disabled = bool
+  }))
+  default     = {}
+  description = "rpc endpoints with http headers and http2 options"
+}
+
 variable "node_workers" {
   type = list(object({
     id       = string
