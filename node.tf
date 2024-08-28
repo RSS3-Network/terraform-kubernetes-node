@@ -4,7 +4,7 @@ locals {
       replicaCount = var.node_replicas
     }
     database = {
-      uri = local.database_uri
+      uri = var.database_uri
     }
     redis = {
       enable        = var.redis_enable
@@ -29,7 +29,6 @@ locals {
 }
 
 resource "helm_release" "node" {
-  depends_on = [helm_release.cockroachdb]
   name       = "node"
   namespace  = var.namespace
   repository = "https://rss3-network.github.io/helm-charts"
