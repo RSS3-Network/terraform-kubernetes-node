@@ -15,19 +15,25 @@ This module is meant for use with Terraform 0.14.
 ## Usage
 
 ```terraform
+module "workers" {
+  source = "RSS3-Network/node/kubernetes//modules/workers"
+}
+
 module "node" {
-  source = "RSS3-Network/node/kubernetes"
+  source = "RSS3-Network/node/kubernetes//modules/gcp"
 
-  project_id = "<PROJECT_ID>"
+  project_id = "<project_id>"
 
-  node_workers = [
-    {
-      id       = "crossbell",
-      worker   = "crossbell",
-      network  = "crossbell",
-      endpoint = "https://rpc.crossbell.io"
+  node_workers = concat(module.workers.internal, module.workers.ethereum)
+
+  node_rpc_endpoints = {
+    ethereum = {
+      url = "<ethereum_rpc_url>"
+      http_headers = {
+        "x-api-key" = "<api-key>"
+      }
     }
-  ]
+  }
 
   node_register_config = {
     operator = {
@@ -38,7 +44,7 @@ module "node" {
       endpoint = "https://your-node.custom-domain.com"
       # optional, default to "https://gi.rss3.io/", testnet use "https://gi.rss3.dev/"
       global_indexer_endpoint = "https://gi.rss3.io/"
-      access_token = "<generate_random_access_token>"
+      access_token            = "<generate_random_access_token>"
     }
   }
 }
